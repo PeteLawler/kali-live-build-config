@@ -125,6 +125,12 @@ if [ -n "$OPT_pu" ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --proposed-updates"
 	KALI_DIST="$KALI_DIST+pu"
 fi
+if [ -n $http_proxy ]; then
+	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-http-proxy=$http_proxy"
+fi
+if [ -n $ftp_proxy ]; then
+	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-ftp-proxy=$http_proxy"
+fi
 
 # Set sane PATH (cron seems to lack /sbin/ dirs)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
