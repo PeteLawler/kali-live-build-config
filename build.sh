@@ -126,10 +126,10 @@ if [ -n "$OPT_pu" ]; then
 	KALI_DIST="$KALI_DIST+pu"
 fi
 if [ -n $http_proxy ]; then
-	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-http-proxy=$http_proxy"
+	KALI_LB_CONFIG_PROXIES="$KALI_LB_CONFIG_PROXIES --apt-http-proxy=$http_proxy"
 fi
 if [ -n $ftp_proxy ]; then
-	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-ftp-proxy=$ftp_proxy"
+	KALI_LB_CONFIG_PROXIES="$KALI_LB_CONFIG_PROXIES --apt-ftp-proxy=$ftp_proxy"
 fi
 
 # Set sane PATH (cron seems to lack /sbin/ dirs)
@@ -182,7 +182,7 @@ for KALI_ARCH in $KALI_ARCHES; do
 	: > build.log
 	run_and_log $SUDO lb clean --purge
 	[ $? -eq 0 ] || failure
-	run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
+	run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS $KALI_LB_CONFIG_PROXIES "$@"
 	[ $? -eq 0 ] || failure
 	run_and_log $SUDO lb build
 	if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
