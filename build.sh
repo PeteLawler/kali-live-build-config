@@ -129,7 +129,7 @@ if [ -n $http_proxy ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-http-proxy=$http_proxy"
 fi
 if [ -n $ftp_proxy ]; then
-	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-ftp-proxy=$http_proxy"
+	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --apt-ftp-proxy=$ftp_proxy"
 fi
 
 # Set sane PATH (cron seems to lack /sbin/ dirs)
